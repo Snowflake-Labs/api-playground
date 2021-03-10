@@ -1,5 +1,6 @@
 @charset "utf-8";
 @import 'normalize';
+@import 'fonts';
 @import 'variables';
 @import 'icon-font';
 // @import 'rtl'; // uncomment to switch to RTL format
@@ -36,6 +37,84 @@ html, body {
   -webkit-text-size-adjust: none; /* Never autoresize text */
 }
 
+.sno-doc-wrapper {
+  position: relative;
+  z-index: 10;
+  background-color: #fff;
+  min-height: 100%;
+  margin-top: 70px;
+  padding-bottom: 1px;
+}
+
+.sno-header-inner {
+  width: 100%;
+  border-bottom: 1px solid rgba(0,0,0,.15);
+  background-color: #fff;
+  position: fixed;
+}
+
+.sno-header .sno-header-inner {
+  position: fixed!important;
+  width: 100%!important;
+  height: 70px;
+  background: #fff;
+  left: 0;
+  top: 0;
+  right: 0;
+  z-index: 5000;
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: space-between;
+  align-items: center;
+
+  .header-left {
+    padding-left: 30px;
+
+    .logo {
+      width: 180px;
+    }
+  }
+
+  .header-right {
+    padding-right: 30px;
+
+    .main-nav {
+      list-style-type: none;
+      display: flex;
+      flex-wrap: nowrap;
+
+      li {
+        display: block;
+
+        a {
+          position: relative;
+          padding: 19px 15px;
+          text-transform: uppercase;
+          font-family: $texta-black;
+          font-size: 15px;
+          color: #000;
+          text-decoration: none;
+          transition: color 150ms ease-in-out;
+
+          &:hover {
+            color: $snowflake-blue;
+          }
+
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: $phone-width) {
+
+  .sno-header .sno-header-inner .header-right .main-nav {
+    display: none;
+  }
+
+}
+
+
 ////////////////////////////////////////////////////////////////////////////////
 // TABLE OF CONTENTS
 ////////////////////////////////////////////////////////////////////////////////
@@ -54,7 +133,7 @@ html, body {
   overflow-x: hidden;
   position: fixed;
   z-index: 30;
-  top: 0;
+  top: 70px;
   left: 0;
   bottom: 0;
   width: $nav-width;
@@ -74,8 +153,14 @@ html, body {
   // This is the logo at the top of the ToC
   .logo {
     display: block;
-    max-width: 100%;
+    max-width: 180px;
     margin-bottom: $logo-margin;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .logo-container {
+    margin-top: 1rem;
+    text-align: center;
   }
 
   &>.search {
@@ -171,7 +256,7 @@ html, body {
 
   .toc-h2 {
     padding-left: $nav-padding + $nav-indent;
-    font-size: 12px;
+    font-size: 13px;
   }
 
   .toc-footer {
@@ -197,7 +282,7 @@ html, body {
 }
 
 .toc-link, .toc-footer li {
-  padding: 0 $nav-padding 0 $nav-padding;
+  padding: $nav-padding-top $nav-padding $nav-padding-top $nav-padding;
   display: block;
   overflow-x: hidden;
   white-space: nowrap;
@@ -207,6 +292,7 @@ html, body {
   transition-property: background;
   transition-timing-function: linear;
   transition-duration: 130ms;
+  font-size: 13px;
 }
 
 // button to show navigation on mobile devices
@@ -286,8 +372,10 @@ html, body {
   a {
     display: inline;
     color: $lang-select-text;
+    font-family: $texta-bold;
+    text-transform: uppercase;
     text-decoration: none;
-    padding: 0 10px;
+    padding: 5px 15px;
     line-height: 30px;
     outline: 0;
 
@@ -346,7 +434,11 @@ html, body {
   }
 
   h1 {
-    @extend %header-font;
+    font-family: $texta-black;
+    text-transform: uppercase;
+    line-height: 0.79;
+    font-weight: normal;
+
     font-size: 25px;
     padding-top: 0.5em;
     padding-bottom: 0.5em;
@@ -363,7 +455,11 @@ html, body {
   }
 
   h2 {
-    @extend %header-font;
+    font-family: $texta-heavy;
+    text-transform: uppercase;
+    line-height: 0.9;
+    font-weight: normal;
+
     font-size: 19px;
     margin-top: 4em;
     margin-bottom: 0;
@@ -443,6 +539,13 @@ html, body {
   p, li, dt, dd {
     line-height: 1.6;
     margin-top: 0;
+  }
+
+  p {
+    a {
+      color: $snowflake-blue;
+      font-family: $lato-bold;
+    }
   }
 
   img {
